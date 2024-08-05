@@ -1,0 +1,124 @@
+
+use bmiit2024
+
+db.Items.insertMany([
+    {
+        "ID": "TP01",
+        "NAME": "Talcom Powder",
+        "MANUFACTURER": "Persona",
+        "PRICE": 40,
+        "QTY": 45,
+        "STOCKDATE": new Date("2018-02-11"),
+        "DEALER": "Krishna Cosmetik"
+    },
+    {
+        "ID": "FW05",
+        "NAME": "Face Wash",
+        "MANUFACTURER": "Attitude",
+        "PRICE": 45,
+        "QTY": 55,
+        "STOCKDATE": new Date("2018-04-15"),
+        "DEALER": "Surbhi Collection"
+    },
+    {
+        "ID": "BS01",
+        "NAME": "Bath Soap",
+        "MANUFACTURER": "Persona",
+        "PRICE": 55,
+        "QTY": 80,
+        "STOCKDATE": new Date("2018-02-11"),
+        "DEALER": "Krishna Cosmetik"
+    },
+    {
+        "ID": "SH06",
+        "NAME": "Shampoo",
+        "MANUFACTURER": "Patanjali",
+        "PRICE": 12,
+        "QTY": 50,
+        "STOCKDATE": new Date("2017-01-05"),
+        "DEALER": "Surbhi Collection"
+    },
+    {
+        "ID": "FW12",
+        "NAME": "Face Wash",
+        "MANUFACTURER": "Loreal",
+        "PRICE": 95,
+        "QTY": 45,
+        "STOCKDATE": new Date("2016-01-05"),
+        "DEALER": "Surbhi Collection"
+    },
+    {
+        "ID": "S5005",
+        "NAME": "Ball Pen 0.5",
+        "MANUFACTURER": "Nataraj Classic",
+        "PRICE": 16,
+        "QTY": 100,
+        "STOCKDATE": new Date("2010-03-31"),
+        "DEALER": "Clear Deals"
+    },
+    {
+        "ID": "S5003",
+        "NAME": "Ball Pen 0.25",
+        "MANUFACTURER": "Nataraj Classic",
+        "PRICE": 20,
+        "QTY": 150,
+        "STOCKDATE": new Date("2010-01-01"),
+        "DEALER": "Clear Deals"
+    },
+    {
+        "ID": "S5002",
+        "NAME": "Gel Pen Premium",
+        "MANUFACTURER": "Pilot Juice",
+        "PRICE": 14,
+        "QTY": 125,
+        "STOCKDATE": new Date("2010-02-14"),
+        "DEALER": "Reliable Stationers"
+    },
+    {
+        "ID": "S5006",
+        "NAME": "Gel Pen Classic",
+        "MANUFACTURER": "Pilot Juice",
+        "PRICE": 22,
+        "QTY": 200,
+        "STOCKDATE": new Date("2010-01-01"),
+        "DEALER": "Reliable Stationers"
+    },
+    {
+        "ID": "S5001",
+        "NAME": "Eraser Small",
+        "MANUFACTURER": "Apsara",
+        "PRICE": 15,
+        "QTY": 210,
+        "STOCKDATE": new Date("2009-03-19"),
+        "DEALER": "Clear Deals"
+    },
+    {
+        "ID": "S5004",
+        "NAME": "Eraser Big",
+        "MANUFACTURER": "Apsara",
+        "PRICE": 10,
+        "QTY": 60,
+        "STOCKDATE": new Date("2009-12-12"),
+        "DEALER": "Clear Deals"
+    },
+    {
+        "ID": "S5009",
+        "NAME": "Sharper Classic",
+        "MANUFACTURER": "Nataraj Classic",
+        "PRICE": 18,
+        "QTY": 160,
+        "STOCKDATE": new Date("2009-01-23"),
+        "DEALER": "Classic"
+    }
+])
+
+
+db.Items.find(
+    { "MANUFACTURER": "Persona" },
+    { "NAME": 1, "PRICE": 1, "_id": 0 }
+)
+
+db.Items.distinct("MANUFACTURER").length
+
+db.Items.find({"NAME" :{$regex : "^Sh",$options:"i"}} );
+
