@@ -1,1 +1,37 @@
 
+Create database - 
+  use database-name -	use bmiit2024
+Show database list 	
+  show  dbs	
+Active(use) database	
+  use database-name 	use bmiit2024
+Create collections	
+  db.createCollection(“collection name”)	db.createCollection(“students”)
+Show collection 	
+  show  collections	
+Insert data	
+  db.collections-name.insert({field:value})	db.students.insert({enro:”1”,name:”dhruvi”})
+Display re-code	
+  db.collectionsname.find()
+  db.collectionsname.find().pretty()	db.students.find()
+Update 	
+  Update:- db.cn.update({field:value},{$set:{field:value}})	Update:-
+  Db.students.update({fname:”riya”},{fname:”kalavati”})
+Update-Many:-
+  db.student.updateMany({age:18},{$set:{eligible:"true"}})
+
+Remove 	
+  Db.cn.remove({field:value})	Db.students.remove({enro:49})
+		
+$eq - equal to	
+      Db.cn.find(field :{$eq:”value”})	Db.students.find(City:{$eq:”Surat”})
+$ne - not equal	
+      Db.cn.find(field:{$ne:”value”})	Db.students.find(City:{$ne:”Surat”})
+$gte - greater then or equal to	
+      Db.cn.find({field:{$gte:”value”}})	Db.students.find(enro:{$gte:105})
+$lte - less then or equal to	
+      Db.cn.find({field:{$lte:”value”}})	Db.students.find(enro:{$gte:8})
+$gt	
+      Db.cn.find({field:{$gt:”value”}})	Db.students.find(enro:{$gt:105})
+$lt	
+      Db.cn.find({field:{$lt:”value”}})	Db.students.find(enro:{$lt:105})
