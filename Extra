@@ -1,0 +1,107 @@
+db.Collection_Company.find()
+
+export - mongoexport --collection=Collection_Company -d BMIITCIE22024 --out=Documents/company.json
+
+import - mongoimport -collection=Company -d BMIITCIE22024 company.json
+
+	 mongoimport --db BMIITCIE22024 --collection Company --file /Users/bmiit/Documents/BDA CIE 2/company.json
+
+	 mongoimport --db BMIITCIE22024 --collection Company < /Users/bmiit/Documents/BDA CIE 2/company.json
+
+pr-2
+
+db.Items.find({ MANUFACTURER: "Persona" }, { NAME: 1, PRICE: 1, _id: 0 })
+
+db.Items.distinct("MANUFACTURER").length
+
+db.Items.find({ NAME: { $regex: /^Sh/, $options: "i" } })
+
+db.Items.find({ NAME: { $regex: /Pen/i } })
+
+db.Items.find({ PRICE: { $gt: 80 } }, { NAME: 1, PRICE: 1, QTY: 1, _id: 0 })
+
+db.Items.find({ PRICE: { $lte: 20 } }, { NAME: 1, PRICE: 1, _id: 0 })
+
+db.Items.find({ $or: [{ DEALER: "Surbhi Collection" }, { QTY: { $gt: 100 } }] })
+
+db.Items.find({ QTY: { $gte: 50, $lte: 100 } })
+
+db.Items.updateMany({}, { $inc: { PRICE: 10 } })
+
+db.Items.updateMany({}, { $inc: { QTY: -30 } })
+
+db.Items.updateMany({}, { $mul: { PRICE: 1.15 } })
+
+db.Items.aggregate([
+  { $group: { _id: null, maxPrice: { $max: "$PRICE" }, minPrice: { $min: "$PRICE" } } }
+])
+
+db.Items.aggregate([
+  { $group: { _id: null, avgPrice: { $avg: "$PRICE" } } }
+])
+
+db.Items.aggregate([
+  { $group: { _id: null, totalAmount: { $sum: { $multiply: ["$PRICE", "$QTY"] } }, avgAmount: { $avg: { $multiply: ["$PRICE", "$QTY"] } } } }
+])
+
+db.Items.aggregate([
+  { $project: { message: { $concat: ["$NAME", " price is ", { $toString: "$PRICE" }] } } }
+])
+
+db.Items.aggregate([
+  { $project: { NAME: 1, PRICE: 1, formattedDate: { $dateToString: { format: "%d %B %Y", date: "$STOCKDATE" } } } }
+])
+
+db.Items.find().sort({ NAME: 1 }) in descending -1
+
+db.Items.aggregate([{ $project: { NAME: { $toUpper: "$NAME" }, _id: 0 } }])
+
+db.Items.aggregate([{ $project: { NAME: 1, nameLength: { $strLenCP: "$NAME" } } }])
+
+db.Items.aggregate([{ $project: { MANUFACTURER: { $toLower: "$MANUFACTURER" } } }])
+
+
+db.Items.aggregate([
+  { $sort: { PRICE: 1 } },
+  { $limit: 1 },
+  { $project: { MANUFACTURER: 1, _id: 0 } }
+])
+
+pr-3
+
+db.Books.updateOne(
+  { bookId: 3 },
+  { $set: { bookTitle: "Deep Learning Basics" } }
+)
+
+db.Books.find(
+  { "authors.2": { $exists: false } },
+  { bookTitle: 1, authors: 1, _id: 0 }
+).sort({ bookTitle: 1 })
+
+db.Books.aggregate([
+  { $group: { _id: "$publisher", totalBooks: { $sum: 1 } } }
+])
+
+
+pr-1
+
+descending
+db.Students.find().sort({ enro: -1 })
+
+
+db.Students.updateOne(
+  { fname: "Monis" },
+  { $set: { contactno: "6852987530", dob: "06/01/1999" } }
+)
+
+db.Students.find({ $or: [{ fname: { $exists: false } }, { lname: { $exists: false } }] })
+// Follow this with the appropriate `updateOne` or `updateMany` commands to complete missing fields.
+
+db.Students.find().skip(5).limit(5)
+
+db.Students.find({ fname: { $regex: "^.a" } }, { fname: 1, _id: 0 }) -second letter
+
+db.Students.find({ city: { $regex: "^M" } }) -first letter
+
+
